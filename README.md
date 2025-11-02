@@ -29,20 +29,20 @@ struct Node {
 
 ### **Key Methods**
 
-| Method | Behavior | Complexity |
-| :-- | :-- | :-- |
-| `AddHead(const T&)` | Inserts at the beginning | O(1) |
-| `AddTail(const T&)` | Inserts at the end | O(1) |
-| `RemoveHead()` | Removes the first node | O(1) |
-| `RemoveTail()` | Removes the last node | O(1) |
-| `Clear()` | Deletes all nodes | O(n) |
-| `getCount()` | Returns node count | O(1) |
+| Method                    | Behavior | Complexity |
+|:--------------------------| :-- | :-- |
+| `addHead(const T&)`       | Inserts at the beginning | O(1) |
+| `addTail(const T&)`       | Inserts at the end | O(1) |
+| `removeHead()`            | Removes the first node | O(1) |
+| `removeTail()`            | Removes the last node | O(1) |
+| `clear()`                 | Deletes all nodes | O(n) |
+| `getCount()`              | Returns node count | O(1) |
 | `getHead()` / `getTail()` | Returns pointers to head/tail | O(1) |
 
 ### **Utility Visualization**
 
-- `PrintForward()` → Prints elements from head to tail.
-- `PrintReverse()` → Prints elements from tail to head.
+- `printForward()` → Prints elements from head to tail.
+- `printReverse()` → Prints elements from tail to head.
 
 **All LinkedList-based implementations must properly follow the Big Five** since the list allocates nodes dynamically (`new Node()`).
 
@@ -129,9 +129,6 @@ Implements `StackInterface<T>` (LIFO).
 | `pop()`                          | Removes the last inserted element                                                                  |
 | `peek() const`                   | Returns top element                                                                                |
 | `getSize()`                      | Returns element count                                                                              |
-| `PrintForward()`                 | Prints stack from bottom to top                                                                    |
-| `PrintReverse()`                 | Prints stack from top to bottom                                                                    |
-
 All resizing operations double capacity (scale factor = 2).
 **Big 5** required to handle possible reallocations.
 
@@ -159,8 +156,6 @@ Implements `QueueInterface<T>` (FIFO).
 | `dequeue()`                       | Removes from front                                                                                 |
 | `peek()`                          | Returns front element                                                                              |
 | `getSize()`                       | Returns size                                                                                       |
-| `PrintForward()`                  | Print front-to-back contents                                                                       |
-| `PrintReverse()`                  | Print in reverse order                                                                             |
 
 
 ***
@@ -189,8 +184,6 @@ Implements `StackInterface<T>`
 | `pop()` | Removes and returns head |
 | `peek()` | Returns head’s data |
 | `getSize()` | Returns node count |
-| `PrintForward()` | Uses LinkedList’s forward traversal |
-| `PrintReverse()` | Uses LinkedList’s reverse traversal |
 
 All methods O(1).
 **Big Five** must correctly copy/move internal list state.
@@ -211,9 +204,7 @@ Implements `QueueInterface<T>`
 | `enqueue(const T&)` | Adds new tail node |
 | `dequeue()` | Removes head node |
 | `peek()` | Returns head data |
-| `getSize()` | Returns list count |
-| `PrintForward()` | Forward traversal |
-| `PrintReverse()` | Reverse traversal |
+| `getSize()` | Returns list count | 
 
 All operations maintain **O(1)** efficiency.
 
@@ -235,8 +226,6 @@ Implements `DequeInterface<T>`
 | `popFront()` / `popBack()` | Remove from front/back |
 | `front()` / `back()` | Retrieve end data |
 | `getSize()` | Total nodes |
-| `PrintForward()` | Forward traversal |
-| `PrintReverse()` | Reverse traversal |
 
 Like all link-based structures, LLDQ has **O(1)** double-ended operations and **must follow the Big 5** to manage internal state safely.
 
@@ -267,8 +256,6 @@ Implements **DequeInterface<T>** using a **circular buffer** model.
 | `front()` / `back()`               | Access extremities                                                                                                                 |
 | `ensureCapacity()`                 | Resizes to `capacity_ * 2`                                                                                                         |
 | `shrinkIfNeeded()`                 | Reduces to half when sparse                                                                                                        |
-| `PrintForward()`                   | Traverses queue order                                                                                                              |
-| `PrintReverse()`                   | Traverses reverse order                                                                                                            |
 
 **All array-based classes must implement the Big 5** to safely transfer `data_` ownership during copies and moves.
 
