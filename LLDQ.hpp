@@ -24,7 +24,7 @@ public:
     // Core Removal Operations
     T popFront() override {
         if (list.getCount() == 0) {
-			throw std::out_of_range("No elements to pop.");
+			throw std::runtime_error("No elements to pop.");
         }
 
         T item = list.getHead()->data;
@@ -34,7 +34,7 @@ public:
 
     T popBack() override {
         if (list.getCount() == 0) {
-			throw std::out_of_range("No elements to pop.");
+			throw std::runtime_error("No elements to pop.");
         }
 
         T item = list.getTail()->data;
@@ -45,7 +45,7 @@ public:
     // Element Accessors
     const T& front() const override {
         if (list.getCount() == 0) {
-			throw std::out_of_range("No elements to peek.");
+			throw std::runtime_error("No elements to peek.");
         }
 
         return list.getHead()->data;
@@ -53,7 +53,7 @@ public:
 
     const T& back() const override {
         if (list.getCount() == 0) {
-			throw std::out_of_range("No elements to peek.");
+			throw std::runtime_error("No elements to peek.");
         }
 
         return list.getTail()->data;

@@ -77,7 +77,7 @@ public:
     // Deletion
     T popFront() override {
         if (size_ == 0) {
-			throw std::out_of_range("No elements to pop.");
+			throw std::runtime_error("No elements to pop.");
         }
 
         T result(std::move(data_[front_]));
@@ -89,7 +89,7 @@ public:
 
     T popBack() override {
         if (size_ == 0) {
-			throw std::out_of_range("No elements to pop.");
+			throw std::runtime_error("No elements to pop.");
         }
 
         std::size_t new_back = (back_ == 0 ? capacity_ : back_) - 1;
@@ -103,7 +103,7 @@ public:
     // Access
     const T& front() const override {
         if (size_ == 0) {
-			throw std::out_of_range("No elements to peek.");
+			throw std::runtime_error("No elements to peek.");
         }
 
         return data_[front_];
@@ -111,7 +111,7 @@ public:
 
     const T& back() const override {
         if (size_ == 0) {
-			throw std::out_of_range("No elements to peek.");
+			throw std::runtime_error("No elements to peek.");
         }
 
         return data_[(back_ == 0 ? capacity_ : back_) - 1];

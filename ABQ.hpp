@@ -86,7 +86,7 @@ public:
     // Access
     T peek() const override {
         if (size_ == 0) {
-			throw std::out_of_range("No elements to peek.");
+			throw std::runtime_error("No elements to peek.");
         }
 
         return data_[0];
@@ -95,7 +95,7 @@ public:
     // Deletion
     T dequeue() override {
         if (size_ == 0) {
-			throw std::out_of_range("No elements to dequeue.");
+			throw std::runtime_error("No elements to dequeue.");
         }
 
         T result(std::move(data_[0]));

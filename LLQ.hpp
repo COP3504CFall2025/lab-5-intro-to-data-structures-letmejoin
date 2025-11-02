@@ -20,7 +20,7 @@ public:
     // Deletion
     T dequeue() override {
         if (list.getCount() == 0) {
-			throw std::out_of_range("No elements to dequeue.");
+			throw std::runtime_error("No elements to dequeue.");
         }
 
         T item = list.getHead()->data;
@@ -31,7 +31,7 @@ public:
     // Access
     T peek() const override {
         if (list.getCount() == 0) {
-			throw std::out_of_range("No elements to peek.");
+			throw std::runtime_error("No elements to peek.");
         }
 
         return list.getHead()->data;

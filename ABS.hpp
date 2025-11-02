@@ -87,7 +87,7 @@ public:
 
     T peek() const override {
         if (size_ == 0) {
-			throw std::out_of_range("No elements to peek.");
+			throw std::runtime_error("No elements to peek.");
         }
 
         return data_[size_ - 1];
@@ -95,7 +95,7 @@ public:
 
     T pop() override {
         if (size_ == 0) {
-			throw std::out_of_range("No elements to pop.");
+			throw std::runtime_error("No elements to pop.");
         }
 
         T result(std::move(data_[size_ - 1]));
