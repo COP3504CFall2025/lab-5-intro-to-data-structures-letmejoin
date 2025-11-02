@@ -69,7 +69,7 @@ public:
         if (size_ == capacity_) {
             std::size_t new_capacity = capacity_ == 0 ? 1 : capacity_ * scale_factor_;
             std::unique_ptr<T[]> new_data = std::make_unique<T[]>(new_capacity);
-            std::copy(data_, data_ + size_, new_data);
+            std::copy(data_, data_ + size_, new_data.get());
             new_data[size_] = data;
 
             delete[] data_;
