@@ -60,7 +60,7 @@ public:
     [[nodiscard]] std::size_t getMaxCapacity() const noexcept {
         // I am sorry, I am too lazy to actually implement this
         std::size_t result = capacity_;
-        while (size_ * scale_factor_ < result) {
+        while (size_ * scale_factor_ * scale_factor_ < result) {
             result /= scale_factor_;
         }
         return result;
