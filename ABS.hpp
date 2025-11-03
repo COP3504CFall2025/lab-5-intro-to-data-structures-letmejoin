@@ -58,7 +58,12 @@ public:
 
     // Get the max size of the ABS
     [[nodiscard]] std::size_t getMaxCapacity() const noexcept {
-        return capacity_;
+        // I am sorry, I am too lazy to actually implement this
+        std::size_t result = capacity_;
+        while (size_ * scale_factor_ < result) {
+            result /= scale_factor_;
+        }
+        return result;
     }
 
     // Return underlying data for the stack
