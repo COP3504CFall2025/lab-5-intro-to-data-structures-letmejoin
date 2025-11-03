@@ -93,6 +93,7 @@ public:
     }
 
     // Deletion
+    // NOTE: basic exception safety only
     T dequeue() override {
         if (size_ == 0) {
 			throw std::runtime_error("No elements to dequeue.");
