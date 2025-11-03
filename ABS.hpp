@@ -93,14 +93,20 @@ public:
         return data_[size_ - 1];
     }
 
+    // NOTE: basic exception safety only
     T pop() override {
         if (size_ == 0) {
 			throw std::runtime_error("No elements to pop.");
         }
 
-        T result(std::move(data_[size_ - 1]));
-    
         size_--;
+        T result(std::move(data_[size_]));
+        if (size_ * 4 <= capacity_) {
+            ABS new_abs(capacity_ / 2);
+            new_abs.size_ = size_;
+            std::copy(data_, data_ + size_, new_abs.data_);
+            *this = std::move(new_abs);
+        }
         return result;
     }
 

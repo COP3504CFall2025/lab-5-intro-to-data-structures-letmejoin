@@ -100,8 +100,14 @@ public:
 
         T result(std::move(data_[0]));
         std::move(data_ + 1, data_ + size_, data_);
-
         size_--;
+
+        if (size_ * 4 <= capacity_) {
+            ABQ new_abq(capacity_ / 2);
+            new_abq.size_ = size_;
+            std::copy(data_, data_ + size_, new_abq.data_);
+            *this = std::move(new_abq);
+        }
         return result;
     }
 
