@@ -75,6 +75,7 @@ public:
     }
 
     // Deletion
+    // NOTE: basic exception safety only
     T popFront() override {
         if (size_ == 0) {
 			throw std::runtime_error("No elements to pop.");
@@ -84,6 +85,9 @@ public:
 
         size_--;
         front_ = front_ + 1 == capacity_ ? 0 : front_ + 1;
+        if (size_ * 4 < capacity_) {
+            shrink();
+        }
         return result;
     }
 
@@ -97,6 +101,9 @@ public:
 
         size_--;
         back_ = new_back;
+        if (size_ * 4 < capacity_) {
+            shrink();
+        }
         return result;
     }
 
@@ -126,6 +133,23 @@ public:
 
         for (std::size_t i = 0; i < size_; i++) {
             new_abdq.data_[i] = data_[(front_ + i) % capacity_];
+        }
+
+        *this = std::move(new_abdq);
+    }
+
+    void shrink() {
+        if (SCALE_FACTOR * size_ > capacity_ || SCALE_FACTOR > capacity_) {
+            throw std::runtime_error("Failed to shrink capacity.");
+        }
+
+        ABDQ new_abdq(capacity_ / SCALE_FACTOR);
+        new_abdq.size_ = size_;
+        new_abdq.front_ = 0;
+        new_abdq.back_ = size_;
+
+        for (std::size_t i = 0; i < size_; i++) {
+            new_abdq.data_[i] = data_[(front + i) % capacity_];
         }
 
         *this = std::move(new_abdq);
